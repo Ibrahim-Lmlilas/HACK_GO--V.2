@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\Admin\DashboardController;
 use \App\Http\Middleware\UserMiddleware as UserMiddleware;
 use \App\Http\Middleware\AdminMiddleware as AdminMiddleware;
 use App\Http\Controllers\Auth\LoginController;
@@ -38,10 +40,10 @@ Route::post('/register', [RegisterController::class, 'register']);
 Route::middleware(['auth', UserMiddleware::class])->group(function () {
 });
 
+// Admin routes - fixed the nested middleware and path issue
 Route::middleware(['auth', AdminMiddleware::class])->prefix('admin')->group(function () {
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 });
-
-
 
 Route::get('/privacy', function () {
     return view('legal.privacy');
