@@ -1,5 +1,6 @@
 <?php
-
+use \App\Http\Middleware\UserMiddleware as UserMiddleware;
+use \App\Http\Middleware\AdminMiddleware as AdminMiddleware;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -34,9 +35,14 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
 
+Route::middleware(['auth', UserMiddleware::class])->group(function () {
+});
 
-// Terms and Privacy Routes
-// Add these routes to your existing web.php file
+Route::middleware(['auth', AdminMiddleware::class])->prefix('admin')->group(function () {
+});
+
+
+
 Route::get('/privacy', function () {
     return view('legal.privacy');
 })->name('privacy');
