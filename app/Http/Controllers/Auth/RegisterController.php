@@ -3,49 +3,53 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 
-class LoginController extends Controller
+class RegisterController extends Controller
 {
-
-    public function showLoginForm()
+    public function showRegistrationForm()
     {
-        return view('auth.login');
+        return view('auth.register');
     }
 
-
-    public function login(Request $request)
+    public function register(Request $request)
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
+        $validator = Validator::make($request->all(), [
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'terms' => ['required'],
         ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-
-            if (Auth::user()->role === 'admin') {
-                return redirect()->intended('/admin/dashboard');
-            }
-
-            return redirect()->intended('/dashboard');
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
         }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+        $isFirstUser = User::count() === 0;
+
+        $user = User::create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'name' => $request->first_name . ' ' . $request->last_name,
+            'password' => Hash::make($request->password),
+            'role' => $isFirstUser ? 'admin' : 'user',
         ]);
-    }
 
+        event(new Registered($user));
 
-    public function logout(Request $request)
-    {
-        Auth::logout();
+        Auth::login($user);
 
-        $request->session()->invalidate();
+        if ($user->role === 'admin') {
+            return redirect('/admin/dashboard');
+        }
 
-        $request->session()->regenerateToken();
-
-        return redirect('/');
+        return redirect('/dashboard');
     }
 }
