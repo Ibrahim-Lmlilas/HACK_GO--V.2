@@ -43,6 +43,7 @@ Route::middleware(['auth', UserMiddleware::class])->group(function () {
 // Admin routes - fixed the nested middleware and path issue
 Route::middleware(['auth', AdminMiddleware::class])->prefix('admin')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('calendar', [App\Http\Controllers\Admin\CalendarController::class, 'getCalendar'])->name('admin.calendar');
 });
 
 Route::get('/privacy', function () {

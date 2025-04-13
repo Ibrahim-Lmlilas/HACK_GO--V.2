@@ -288,77 +288,13 @@
 
         <!-- Right Column - Calendar -->
         <div>
-            <div class="bg-white rounded-lg shadow overflow-hidden mb-8">
-                <div class="p-6 border-b">
-                    <div class="flex justify-between items-center">
-                        <h2 class="text-xl font-bold text-gray-800">September</h2>
-                        <div class="flex space-x-1">
-                            <button class="p-1 rounded hover:bg-gray-100">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                                </svg>
-                            </button>
-                            <button class="p-1 rounded hover:bg-gray-100">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-4">
-                    <!-- Calendar Days -->
-                    <div class="grid grid-cols-7 gap-2 text-center text-xs text-gray-500 mb-2">
-                        <div>Su</div>
-                        <div>Mo</div>
-                        <div>Tu</div>
-                        <div>We</div>
-                        <div>Th</div>
-                        <div>Fr</div>
-                        <div>Sa</div>
-                    </div>
-                    <!-- Calendar Dates -->
-                    <div class="grid grid-cols-7 gap-2 text-center">
-                        <div class="py-2 text-gray-400">27</div>
-                        <div class="py-2 text-gray-400">28</div>
-                        <div class="py-2 text-gray-400">29</div>
-                        <div class="py-2 text-gray-400">30</div>
-                        <div class="py-2 text-gray-400">31</div>
-                        <div class="py-2">1</div>
-                        <div class="py-2">2</div>
-
-                        <div class="py-2">3</div>
-                        <div class="py-2">4</div>
-                        <div class="py-2">5</div>
-                        <div class="py-2">6</div>
-                        <div class="py-2">7</div>
-                        <div class="py-2">8</div>
-                        <div class="py-2">9</div>
-
-                        <div class="py-2">10</div>
-                        <div class="py-2">11</div>
-                        <div class="py-2">12</div>
-                        <div class="py-2">13</div>
-                        <div class="py-2">14</div>
-                        <div class="py-2">15</div>
-                        <div class="py-2">16</div>
-
-                        <div class="py-2">17</div>
-                        <div class="py-2 bg-[#8a2be2] text-white rounded-full">18</div>
-                        <div class="py-2 bg-[#8a2be2] text-white rounded-full">19</div>
-                        <div class="py-2 bg-[#8a2be2] text-white rounded-full">20</div>
-                        <div class="py-2 bg-[#8a2be2] text-white rounded-full">21</div>
-                        <div class="py-2 bg-[#8a2be2] text-white rounded-full">22</div>
-                        <div class="py-2">23</div>
-
-                        <div class="py-2">24</div>
-                        <div class="py-2">25</div>
-                        <div class="py-2">26</div>
-                        <div class="py-2">27</div>
-                        <div class="py-2">28</div>
-                        <div class="py-2">29</div>
-                        <div class="py-2">30</div>
-                    </div>
+            <div class="bg-white rounded-lg shadow overflow-hidden mb-8" id="calendar-section">
+                <div class="p-6">
+                    <x-calendar
+                        :month="request('month')"
+                        :year="request('year')"
+                        :selected-dates="['2023-09-18', '2023-09-19', '2023-09-20', '2023-09-21', '2023-09-22']"
+                    />
                 </div>
             </div>
 
