@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'MyGo') }}</title>
+    <title>{{ config('app.name', 'HACK&GO') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +18,7 @@
 
     <style>
         :root {
-            --primary-color: #0077b6;
+            --primary-color: #9370db;
             --secondary-color: #8a2be2;
             --text-color: #333;
             --light-bg: #f8f9fa;
@@ -90,7 +90,7 @@
 
         .form-control:focus {
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 0.25rem rgba(0, 119, 182, 0.25);
+            box-shadow: 0 0 0 0.25rem rgba(147, 112, 219, 0.25);
         }
 
         .btn-primary {
@@ -102,8 +102,8 @@
         }
 
         .btn-primary:hover {
-            background-color: #005f92;
-            border-color: #005f92;
+            background-color: #8a2be2;
+            border-color: #8a2be2;
         }
 
         .btn-outline-secondary {
@@ -130,11 +130,11 @@
             text-decoration: underline;
         }
 
-        .placeholder-img {
-            width: 200px;
-            height: 200px;
+        .icon-container {
+            width: 120px;
+            height: 120px;
             background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 1rem;
+            border-radius: 50%;
             margin-bottom: 2rem;
             display: flex;
             align-items: center;
@@ -193,21 +193,24 @@
 <body>
     <div class="auth-container">
         <div class="left-panel">
-            <div class="placeholder-img">
-                <i class="fa fa-image fa-3x" style="opacity: 0.5;"></i>
+            <div class="icon-container">
+                <i class="fas fa-plane-departure fa-4x" style="opacity: 0.9;"></i>
             </div>
-            <h2>Start your journey with MyGo</h2>
+            <h2>Start your journey with HACK&GO</h2>
             <p class="mt-3">Create an account to plan your trips, manage bookings, and discover amazing destinations around the world.</p>
         </div>
 
         <div class="right-panel">
             <div class="auth-form">
-                <div class="text-center mb-4">
-                    <span class="logo">MyGo</span>
+                <a href="{{ url('/') }}" class="me-3" style="color: var(--primary-color);">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div class="text-center  d-flex align-items-center justify-content-center">
+                    <span class="logo">HACK&GO</span>
                 </div>
 
                 <h1 class="form-title">Create your account</h1>
-                <p class="mb-4">Already have an account? <a href="{{ route('login') }}" class="auth-link">Sign in</a></p>
+                <p class="mb-3">Already have an account? <a href="{{ route('login') }}" class="auth-link">Sign in</a></p>
 
                 @if (session('status'))
                     <div class="alert alert-success" role="alert">
@@ -275,14 +278,18 @@
                         </div>
                     </div>
 
+                    <!-- Update the terms checkbox section -->
                     <div class="mb-4">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="terms" id="terms" required>
                             <label class="form-check-label" for="terms">
-                                I agree to the <a href="{{ route('terms') }}" class="auth-link">terms of service</a> and <a href="{{ route('privacy') }}" class="auth-link">privacy policy</a>
+                                I agree to the <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal" class="auth-link">terms of service</a> and <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal" class="auth-link">privacy policy</a>
                             </label>
                         </div>
                     </div>
+
+                    <!-- Add this at the end of the file, just before the closing </body> tag -->
+                    @include('legal.modals')
 
                     <div class="mb-4">
                         <button type="submit" class="btn btn-primary w-100">
@@ -311,5 +318,7 @@
             this.querySelector('i').classList.toggle('fa-eye-slash');
         });
     </script>
+    <!-- Add this before the closing </body> tag, after your existing scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

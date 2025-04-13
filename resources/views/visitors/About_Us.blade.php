@@ -8,7 +8,7 @@
                 <p class="text-xl text-gray-200 max-w-3xl mx-auto mb-8">
             Discover the story behind Morocco's premier travel experience curator, connecting travelers with authentic Moroccan adventures.
         </p>
-        <a href="#more" class="bg-[#9370db] hover:bg-[#8a2be2] text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-flex items-center scroll-smooth" onclick="event.preventDefault(); document.querySelector('#more').scrollIntoView({behavior: 'smooth'});">
+        <a href="#more" class="bg-[#9370db] hover:bg-[#8a2be2] text-white font-bold py-3 px-8 rounded-full transition-transform duration-300 hover:scale-105 inline-flex items-center scroll-smooth" onclick="event.preventDefault(); document.querySelector('#more').scrollIntoView({behavior: 'smooth'});">
             Learn More
             <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
         </a>

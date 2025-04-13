@@ -36,6 +36,12 @@ Route::post('/register', [RegisterController::class, 'register']);
 
 
 // Terms and Privacy Routes
-Route::get('/terms', function() { return view('terms'); })->name('terms');
-Route::get('/privacy', function() { return view('privacy'); })->name('privacy');
+// Add these routes to your existing web.php file
+Route::get('/privacy', function () {
+    return view('legal.privacy');
+})->name('privacy');
+
+Route::get('/terms', function () {
+    return view('legal.terms');
+})->name('terms');
 

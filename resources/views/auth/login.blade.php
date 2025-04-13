@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'MyGo') }}</title>
+    <title>{{ config('app.name', 'HACK&GO') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +18,7 @@
 
     <style>
         :root {
-            --primary-color: #0077b6;
+            --primary-color: #9370db;
             --secondary-color: #8a2be2;
             --text-color: #333;
             --light-bg: #f8f9fa;
@@ -90,7 +90,7 @@
 
         .form-control:focus {
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 0.25rem rgba(0, 119, 182, 0.25);
+            box-shadow: 0 0 0 0.25rem rgba(147, 112, 219, 0.25);
         }
 
         .btn-primary {
@@ -102,8 +102,8 @@
         }
 
         .btn-primary:hover {
-            background-color: #005f92;
-            border-color: #005f92;
+            background-color: #8a2be2;
+            border-color: #8a2be2;
         }
 
         .btn-outline-secondary {
@@ -130,11 +130,11 @@
             text-decoration: underline;
         }
 
-        .placeholder-img {
-            width: 200px;
-            height: 200px;
+        .icon-container {
+            width: 120px;
+            height: 120px;
             background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 1rem;
+            border-radius: 50%;
             margin-bottom: 2rem;
             display: flex;
             align-items: center;
@@ -148,7 +148,7 @@
 
         .btn-link:hover {
             text-decoration: underline;
-            color: #005f92;
+            color: #8a2be2;
         }
 
         @media (max-width: 768px) {
@@ -164,22 +164,49 @@
                 padding: 1.5rem;
             }
         }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
     <div class="auth-container">
         <div class="left-panel">
-            <div class="placeholder-img">
-                <i class="fa fa-image fa-3x" style="opacity: 0.5;"></i>
+
+            <div class="icon-container">
+                <i class="fas fa-plane-departure fa-4x" style="opacity: 0.9;"></i>
             </div>
-            <h2>Welcome back to MyGo</h2>
+            <h2>Welcome back to HACK&GO</h2>
             <p class="mt-3">Sign in to access your account, manage your bookings, and continue exploring amazing destinations.</p>
         </div>
 
         <div class="right-panel">
+
             <div class="auth-form">
-                <div class="text-center mb-4">
-                    <span class="logo">MyGo</span>
+                <a href="{{ url('/') }}" class="me-3" style="color: var(--primary-color);">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div class="text-center mb-4 d-flex align-items-center justify-content-center">
+                    <span class="logo">HACK&GO</span>
                 </div>
 
                 <h1 class="form-title">Sign in</h1>
